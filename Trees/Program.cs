@@ -18,14 +18,35 @@ public class Program
         TreeNode<int> a1 = new TreeNode<int>(7, b1, b2, b3);
 
         Print(a1, 0);
+        Console.WriteLine(string.Join(", ", PostOrderTraversal(a1)));
     }
 
-    private static void Print(TreeNode<int> node, int depth)
+    private static void Print<T>(TreeNode<T> node, int depth)
     {
         Console.WriteLine($"{new string(' ', depth * 2)}{node.Value}");
 
-        foreach (TreeNode<int> childNode in node.Children)
+        foreach (TreeNode<T> childNode in node.Children)
             Print(childNode, depth + 1);
     }
 
+    private static IEnumerable<T> PreOrderTraversal<T>(TreeNode<T> node)
+    {
+        yield return node.Value;
+        foreach (TreeNode<T> childNode in node.Children)
+        {
+            foreach (T childValue in PreOrderTraversal(childNode))
+                yield return childValue;
+        }
+    }
+
+    private static IEnumerable<T> PostOrderTraversal<T>(TreeNode<T> node)
+    {
+        foreach (TreeNode<T> childNode in node.Children)
+        {
+            foreach (T childValue in PostOrderTraversal(childNode))
+                yield return childValue;
+        }
+
+        yield return node.Value;
+    }
 }
