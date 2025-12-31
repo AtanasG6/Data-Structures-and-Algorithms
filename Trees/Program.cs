@@ -17,5 +17,15 @@ public class Program
 
         TreeNode<int> a1 = new TreeNode<int>(7, b1, b2, b3);
 
+        Print(a1, 0);
     }
+
+    private static void Print(TreeNode<int> node, int depth)
+    {
+        Console.WriteLine($"{new string(' ', depth * 2)}{node.Value}");
+
+        foreach (TreeNode<int> childNode in node.Children)
+            Print(childNode, depth + 1);
+    }
+
 }
