@@ -53,17 +53,44 @@ public class Program
         yield return node.Value;
     }
 
+    //private static IEnumerable<T> BFS<T>(TreeNode<T> root)
+    //{
+    //    Queue<TreeNode<T>> queue = new Queue<TreeNode<T>>();
+    //    queue.Enqueue(root);
+
+    //    while (queue.TryDequeue(out TreeNode<T>? node))
+    //    {
+    //        yield return node.Value;
+
+    //        foreach (TreeNode<T> childNode in node.Children)
+    //            queue.Enqueue(childNode);
+    //    }
+    //}
+
     private static IEnumerable<T> BFS<T>(TreeNode<T> root)
     {
         Queue<TreeNode<T>> queue = new Queue<TreeNode<T>>();
         queue.Enqueue(root);
 
-        while (queue.TryDequeue(out TreeNode<T>? node))
-        {
-            yield return node.Value;
+        int level = 0;
 
-            foreach (TreeNode<T> childNode in node.Children)
-                queue.Enqueue(childNode);
+        // for(int level = 0; queue.Count > 0; level++)
+
+        while (queue.Count > 0)
+        {
+            int width = queue.Count;
+
+            for (int i = 0; i < width; i++)
+            {
+                TreeNode<T> node = queue.Dequeue();
+
+                yield return node.Value;
+
+                foreach (TreeNode<T> childNode in node.Children)
+                    queue.Enqueue(childNode);
+            }
+
+            level++;
         }
     }
 }
