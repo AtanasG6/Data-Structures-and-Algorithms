@@ -18,6 +18,7 @@ public class Program
         TreeNode<int> a1 = new TreeNode<int>(7, b1, b2, b3);
 
         Print(a1, 0);
+        Console.WriteLine(string.Join(", ", PreOrderTraversal(a1)));
         Console.WriteLine(string.Join(", ", PostOrderTraversal(a1)));
     }
 
@@ -32,6 +33,7 @@ public class Program
     private static IEnumerable<T> PreOrderTraversal<T>(TreeNode<T> node)
     {
         yield return node.Value;
+
         foreach (TreeNode<T> childNode in node.Children)
         {
             foreach (T childValue in PreOrderTraversal(childNode))
