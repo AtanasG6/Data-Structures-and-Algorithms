@@ -20,6 +20,7 @@ public class Program
         Print(a1, 0);
         Console.WriteLine(string.Join(", ", PreOrderTraversal(a1)));
         Console.WriteLine(string.Join(", ", PostOrderTraversal(a1)));
+        Console.WriteLine(string.Join(", ", BFS(a1)));
     }
 
     private static void Print<T>(TreeNode<T> node, int depth)
@@ -50,5 +51,19 @@ public class Program
         }
 
         yield return node.Value;
+    }
+
+    private static IEnumerable<T> BFS<T>(TreeNode<T> root)
+    {
+        Queue<TreeNode<T>> queue = new Queue<TreeNode<T>>();
+        queue.Enqueue(root);
+
+        while (queue.TryDequeue(out TreeNode<T>? node))
+        {
+            yield return node.Value;
+
+            foreach (TreeNode<T> childNode in node.Children)
+                queue.Enqueue(childNode);
+        }
     }
 }
