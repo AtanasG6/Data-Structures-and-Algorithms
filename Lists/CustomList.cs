@@ -22,6 +22,8 @@ public class CustomList
 
     public void Grow()
     {
-        // TODO: Increase the size of the internal array
+        int[] newArray = new int[this._array.Length * 2];
+        Array.Copy(this._array, newArray, this._array.Length);
+        this._array = newArray;
     }
 }
