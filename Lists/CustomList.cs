@@ -48,6 +48,7 @@ public class CustomList
         this.ShiftRight(this.Count - 1, index);
 
         this._array[index] = element;
+        this.Count++;
     }
 
     private void GrowIfNeeded()
