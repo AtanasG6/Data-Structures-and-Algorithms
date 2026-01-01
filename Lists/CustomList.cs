@@ -27,11 +27,33 @@ public class CustomList
 
     public void Add(int element)
     {
-        if (this.Count == this._array.Length)
-            this.Grow();
+        this.GrowIfNeeded();
 
         this._array[this.Count] = element;
         this.Count++;
+    }
+
+    public void Insert(int index, int element)
+    {
+        if (index == this.Count)
+        {
+            this.Add(element);
+            return;
+        }
+
+        this.ValidateIndex(index);
+
+        this.GrowIfNeeded();
+
+        this.ShiftRight(this.Count - 1, index);
+
+        this._array[index] = element;
+    }
+
+    private void GrowIfNeeded()
+    {
+        if (this.Count == this._array.Length)
+            this.Grow();
     }
 
     private void Grow()
@@ -45,5 +67,11 @@ public class CustomList
     {
         if (index < 0 || index >= this.Count)
             throw new IndexOutOfRangeException("Index was out of range.");
+    }
+
+    private void ShiftRight(int start, int end)
+    {
+        for (int i = end; i >= start; i--)
+            this._array[i + 1] = this._array[i];
     }
 }

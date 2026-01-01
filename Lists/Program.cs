@@ -14,6 +14,12 @@ public class Program
 
         list[5] = 42;
 
-        Console.WriteLine(list[5]);        
+        Console.WriteLine(list[5]);
+
+        Console.WriteLine($"Element at index 3 before insert: {list[3]}");
+
+        list.Insert(3, 99);
+
+        Console.WriteLine($"Element at index 3 after insert: {list[3]}");
     }
 }
