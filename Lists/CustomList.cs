@@ -57,6 +57,8 @@ public class CustomList
 
         this.ShiftLeft(index + 1, this.Count - 1);
 
+        this[this.Count - 1] = default;
+
         this.Count--;
     }
 
