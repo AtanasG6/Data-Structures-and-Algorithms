@@ -51,6 +51,15 @@ public class CustomList
         this.Count++;
     }
 
+    public void RemoveAt(int index)
+    {
+        this.ValidateIndex(index);
+
+        this.ShiftLeft(index + 1, this.Count - 1);
+
+        this.Count--;
+    }
+
     private void GrowIfNeeded()
     {
         if (this.Count == this._array.Length)
@@ -74,5 +83,11 @@ public class CustomList
     {
         for (int i = end; i >= start; i--)
             this._array[i + 1] = this._array[i];
+    }
+
+    private void ShiftLeft(int start, int end)
+    {
+        for (int i = start; i <= end; i++)
+            this._array[i - 1] = this._array[i];
     }
 }

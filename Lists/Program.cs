@@ -21,5 +21,11 @@ public class Program
         list.Insert(3, 99);
 
         Console.WriteLine($"Element at index 3 after insert: {list[3]}");
+
+        Console.WriteLine($"Element at index 0 before remove: {list[0]}");
+
+        list.RemoveAt(0);
+
+        Console.WriteLine($"Element at index 0 before remove: {list[0]}");
     }
 }
