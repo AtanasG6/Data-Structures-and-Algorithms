@@ -25,7 +25,7 @@ public class CustomList
         }
     }
 
-    private void Add(int element)
+    public void Add(int element)
     {
         if (this.Count == this._array.Length)
             this.Grow();

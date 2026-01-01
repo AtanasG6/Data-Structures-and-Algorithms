@@ -5,10 +5,15 @@ public class Program
     public static void Main()
     {
         CustomList list = new CustomList();
-        list.Add(1);
-        list.Add(13);
-        list.Add(7);
+        for (int i = 0; i < 10; i++)
+        {
+            list.Add(i);
+        }
 
-        Console.WriteLine(list.Count);
+        Console.WriteLine(list[2]);
+
+        list[5] = 42;
+
+        Console.WriteLine(list[5]);        
     }
 }
